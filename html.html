@@ -7,9 +7,87 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    
     <title>Document</title>
 </head>
+<style>
+    body {
+        height: 100%
+      }
+    .container {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background: yellow;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+    }
+    #hero {
+        position: absolute;
+        width: 8%;
+        height: auto;
+        left: 0;
+        top: 0;
+    }
+    
+</style>
 <body>
     
+    <div class="container">
+        <img id="hero" width="5%" src="personagens/Her i.webp" alt="">
+    </div>
+    
 </body>
+<script>
+
+
+    
+    var posicaox = 0;
+    var posicaoy = 0;
+    var pixelAoAndar = 10;
+    window.addEventListener("keydown",function(event){
+        
+        if (event.keyCode == 40) { // down
+            posicaoy += pixelAoAndar;
+            var novaPosicaoX = posicaoy
+            if (posicaoy + $("#hero").height() > $(".container").height()) {
+                posicaoy = ($(".container").height() - $("#hero").height());
+                novaPosicaoX = posicaoy ;
+            }
+            posicaoy += pixelAoAndar;
+            $("#hero").css({"top": posicaoy + "px"});
+        }
+        if (event.keyCode == 38) {  // up
+            posicaoy -= pixelAoAndar;
+            var novaPosicaoX = posicaoy
+            if ( posicaoy < 0) {
+                posicaoy = 0;
+                novaPosicaoX = posicaoy ;
+            }
+            $("#hero").css({"top": posicaoy + "px"});
+        }
+        if( event.keyCode == 39) { // right
+            posicaox += pixelAoAndar;
+            var novaPosicaoX = posicaox
+            if (posicaox + $("#hero").width() > $(".container").width()) {
+                posicaox = ($(".container").width() - $("#hero").width());
+                novaPosicaoX = posicaox ;
+            }
+            $("#hero").css({"left": novaPosicaoX + "px"});
+        }
+
+        if( event.keyCode == 37) { // left
+            posicaox -= pixelAoAndar;
+            var novaPosicaoX = posicaox
+            if ( posicaox < 0) {
+                posicaox = 0;
+                novaPosicaoX = posicaox ;
+            }
+            $("#hero").css({"left": novaPosicaoX + "px"});
+        }
+    })
+</script>
 </html>
